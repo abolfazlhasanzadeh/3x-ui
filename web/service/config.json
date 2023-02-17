@@ -1,9 +1,4 @@
 {
-  "log": {
-    "loglevel": "warning", 
-    "access": "./access.log"
-  },
- 
   "api": {
     "services": [
       "HandlerService",
@@ -35,18 +30,13 @@
     }
   ],
   "policy": {
-    "levels": {
-      "0": {
-        "statsUserUplink": true,
-        "statsUserDownlink": true
-      }
-    },
     "system": {
       "statsInboundDownlink": true,
       "statsInboundUplink": true
     }
   },
   "routing": {
+    "domainStrategy": "IPIfNonMatch",
     "rules": [
       {
         "inboundTag": [
@@ -57,7 +47,8 @@
       },
       {
         "ip": [
-          "geoip:private"
+          "geoip:private",
+          "geoip:ir"
         ],
         "outboundTag": "blocked",
         "type": "field"
